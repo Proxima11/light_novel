@@ -7,6 +7,7 @@ import (
 
 	"github.com/joho/godotenv"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
 	"light_novel/backend/controllers"
@@ -26,6 +27,7 @@ func main() {
 	fmt.Println("Database connected and migrated")
 
 	r := gin.Default()
+	r.Use(cors.Default())
 
 	protected := r.Group("/api")
 	protected.Use(middlewares.AuthorizeUser())
